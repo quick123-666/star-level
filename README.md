@@ -82,7 +82,8 @@ The function `sync-github-stars` requires JWT (`verify_jwt: true`) and body `{ "
 ```
 src/app/           # Next.js pages (login, signup, bind-github, dashboard)
 src/components/    # UI components
-src/lib/supabase/  # Supabase clients + middleware
+src/lib/supabase/  # Supabase clients
+src/proxy.ts       # Locale routing (next-intl)
 supabase/functions/sync-github-stars/  # Star sync + XP grants
 ```
 
