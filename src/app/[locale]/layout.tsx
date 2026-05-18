@@ -7,6 +7,9 @@ import { routing, type Locale } from '@/i18n/routing'
 import { LanguageSwitcher } from '@/components/language-switcher'
 import '../globals.css'
 
+// Auth pages use Supabase; skip static prerender at build (needs env at runtime).
+export const dynamic = 'force-dynamic'
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],

@@ -19,7 +19,6 @@ export default function BindGitHubPage() {
   const tc = useTranslations('common')
   const locale = useLocale()
   const router = useRouter()
-  const supabase = createClient()
   const [linked, setLinked] = useState<boolean | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [showManualLinkingHelp, setShowManualLinkingHelp] = useState(false)
@@ -40,6 +39,7 @@ export default function BindGitHubPage() {
   }, [])
 
   async function initLinkedState() {
+    const supabase = createClient()
     const {
       data: { user },
     } = await supabase.auth.getUser()
@@ -54,11 +54,13 @@ export default function BindGitHubPage() {
   }
 
   async function handleGitHubLogin() {
+    const supabase = createClient()
     await supabase.auth.signOut()
     window.location.href = signinHref
   }
 
   async function handleSignOut() {
+    const supabase = createClient()
     await supabase.auth.signOut()
     router.push('/login')
   }

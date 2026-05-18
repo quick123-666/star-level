@@ -10,7 +10,6 @@ export default function SignupPage() {
   const tc = useTranslations('common')
   const locale = useLocale()
   const router = useRouter()
-  const supabase = createClient()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -21,6 +20,7 @@ export default function SignupPage() {
     setLoading(true)
     setError(null)
     const origin = window.location.origin
+    const supabase = createClient()
     const { error: signUpError } = await supabase.auth.signUp({
       email,
       password,

@@ -49,6 +49,21 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+## Deploy on Vercel
+
+1. Import [github.com/quick123-666/star-level](https://github.com/quick123-666/star-level) on [vercel.com](https://vercel.com).
+2. **Settings → Environment Variables** (required for Production and Preview):
+
+   | Name | Value |
+   |------|--------|
+   | `NEXT_PUBLIC_SUPABASE_URL` | `https://YOUR_PROJECT_REF.supabase.co` |
+   | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Anon / publishable key from Supabase → Settings → API |
+
+3. Redeploy after saving env vars.
+4. In **Supabase → Authentication → URL Configuration**, add your Vercel URLs, e.g.:
+   - Site URL: `https://your-app.vercel.app`
+   - Redirect URLs: `https://your-app.vercel.app/zh/auth/callback`, `https://your-app.vercel.app/en/auth/callback`
+
 ### 4. Deploy Edge Function
 
 From project root (requires [Supabase CLI](https://supabase.com/docs/guides/cli)):
