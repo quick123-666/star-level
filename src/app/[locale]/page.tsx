@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server'
+import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { Link, redirect } from '@/i18n/navigation'
-import type { Locale } from '@/i18n/routing'
+import { Link } from '@/i18n/navigation'
 
 export default async function HomePage({
   params,
@@ -11,18 +11,23 @@ export default async function HomePage({
   const { locale } = await params
   const t = await getTranslations('home')
   const tc = await getTranslations('common')
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
 
-  if (user) {
-    const { data: progress } = await supabase.rpc('my_progress')
-    const p = progress as { has_github_linked?: boolean } | null | undefined
-    if (p?.has_github_linked) {
-      redirect({ href: '/dashboard', locale: locale as Locale })
+  try {
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (user) {
+      const { data: progress } = await supabase.rpc('my_progress')
+      const p = progress as { has_github_linked?: boolean } | null | undefined
+      if (p?.has_github_linked) {
+        redirect(`/${locale}/dashboard`)
+      }
+      redirect(`/${locale}/bind-github`)
     }
-    redirect({ href: '/bind-github', locale: locale as Locale })
+  } catch {
+    // Missing env or Supabase unreachable — still show public homepage.
   }
 
   return (

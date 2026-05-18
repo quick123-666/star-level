@@ -1,9 +1,8 @@
 import { getTranslations } from 'next-intl/server'
 import { createClient } from '@/lib/supabase/server'
-import { redirect } from '@/i18n/navigation'
+import { redirect } from 'next/navigation'
 import { ProgressCard } from '@/components/progress-card'
 import { DashboardActions } from '@/components/dashboard-actions'
-import type { Locale } from '@/i18n/routing'
 import type { MyProgress } from '@/types/database'
 
 export default async function DashboardPage({
@@ -20,14 +19,14 @@ export default async function DashboardPage({
   } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect({ href: '/login', locale: locale as Locale })
+    redirect(`/${locale}/login`)
   }
 
   const { data: progressData } = await supabase.rpc('my_progress')
   const progress = (progressData ?? { authenticated: false }) as MyProgress
 
   if (!progress.has_github_linked) {
-    redirect({ href: '/bind-github', locale: locale as Locale })
+    redirect(`/${locale}/bind-github`)
   }
 
   return (
