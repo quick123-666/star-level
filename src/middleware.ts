@@ -1,23 +1,9 @@
 import createIntlMiddleware from 'next-intl/middleware'
-import { type NextRequest, NextResponse } from 'next/server'
 import { routing } from '@/i18n/routing'
-import { updateSession } from '@/lib/supabase/middleware'
 
-const intlMiddleware = createIntlMiddleware(routing)
-
-export async function middleware(request: NextRequest) {
-  try {
-    const intlResponse = intlMiddleware(request)
-
-    if (intlResponse.headers.get('location')) {
-      return intlResponse
-    }
-
-    return await updateSession(request, intlResponse)
-  } catch {
-    return NextResponse.next({ request })
-  }
-}
+// Auth redirects live in server pages (dashboard, home). Keeping middleware
+// intl-only avoids Edge runtime crashes with Supabase session refresh.
+export default createIntlMiddleware(routing)
 
 export const config = {
   matcher: [

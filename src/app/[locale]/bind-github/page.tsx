@@ -44,6 +44,11 @@ export default function BindGitHubPage() {
       data: { user },
     } = await supabase.auth.getUser()
 
+    if (!user) {
+      router.replace('/login')
+      return
+    }
+
     if (user?.identities?.some((i) => i.provider === 'github')) {
       await ensureGithubAccountRow(supabase, user)
     }
