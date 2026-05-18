@@ -1,0 +1,83 @@
+{
+  "common": {
+    "appName": "Star Level",
+    "email": "邮箱",
+    "password": "密码",
+    "signOut": "退出登录",
+    "loading": "加载中…",
+    "language": "语言",
+    "english": "English",
+    "chinese": "中文"
+  },
+  "home": {
+    "tagline": "用 GitHub Star 为开源项目升级",
+    "description": "绑定 GitHub，为公开仓库点 Star 获得经验，升至 100 级。每个仓库终身只认可一次；每日认可上限随等级提升。",
+    "getStarted": "立即开始",
+    "logIn": "登录"
+  },
+  "login": {
+    "title": "登录 Star Level",
+    "subtitle": "使用邮箱登录后，在控制台绑定 GitHub 并开始积累 Star 经验。",
+    "submit": "登录",
+    "submitting": "登录中…",
+    "noAccount": "还没有账号？",
+    "signUp": "注册"
+  },
+  "signup": {
+    "title": "注册 Star Level",
+    "subtitle": "注册后需绑定 GitHub，通过 Star 公开仓库获得经验并升级。",
+    "githubButton": "使用 GitHub 注册 / 登录",
+    "orEmail": "或邮箱注册",
+    "passwordHint": "密码（至少 6 位）",
+    "submit": "邮箱注册",
+    "submitting": "注册中…",
+    "hasAccount": "已有账号？",
+    "logIn": "登录"
+  },
+  "bindGitHub": {
+    "title": "绑定 GitHub",
+    "subtitle": "注册后绑定 GitHub，同步你 Star 过的公开仓库并获得经验。",
+    "checking": "检查绑定状态…",
+    "linkedMessage": "已绑定 GitHub。同步 Stars 以认可新仓库。",
+    "goDashboard": "进入控制台 →",
+    "connect": "连接 GitHub",
+    "redirecting": "跳转中…",
+    "manualLinkingTitle": "需要在 Supabase 开启「手动关联账号」",
+    "manualLinkingStep1": "打开 Supabase → Authentication → Sign In / Providers",
+    "manualLinkingStep2": "找到 Manual linking（手动关联）并打开开关",
+    "manualLinkingStep3": "保存后回到此页，再点「连接 GitHub」",
+    "openSupabaseSettings": "打开 Supabase 认证设置",
+    "orGitHubLogin": "或：退出后用 GitHub 直接登录（邮箱一致可自动关联）",
+    "githubLoginButton": "退出并用 GitHub 登录"
+  },
+  "dashboard": {
+    "syncTitle": "同步 GitHub Stars",
+    "syncDescription": "每新认可 1 个公开仓库 +10 经验。同一仓库每个账号只认可一次。",
+    "rulesTitle": "规则说明",
+    "ruleDailyCap": "每日上限：10 × ceil(等级 / 10) 个新认可",
+    "ruleReset": "业务日于北京时间 01:00 切换",
+    "ruleMaxLevel": "100 级满级后不再获得经验"
+  },
+  "progress": {
+    "currentLevel": "当前等级",
+    "maxLevel": "满级",
+    "totalXp": "总经验 {value}",
+    "lifetimeRepos": "终身认可 {count} 个仓库",
+    "levelProgress": "升级进度",
+    "xpRatio": "{current} / {required} XP",
+    "todayRecognized": "今日新认可",
+    "todayXp": "今日获得经验",
+    "footer": "业务日 {date}（北京时间 01:00 切换）· 每个新 repo +10 XP"
+  },
+  "sync": {
+    "button": "同步 GitHub Stars",
+    "syncing": "同步中…",
+    "loginRequired": "请先登录",
+    "githubRequired": "需要 GitHub 授权。请前往「绑定 GitHub」重新连接。",
+    "success": "完成：新认可 {recognized} 个，跳过 {skipped} 个"
+  },
+  "metadata": {
+    "title": "Star Level",
+    "description": "通过 GitHub Star 公开仓库获得经验并升级"
+  }
+}

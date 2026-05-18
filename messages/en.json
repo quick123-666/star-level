@@ -1,0 +1,83 @@
+{
+  "common": {
+    "appName": "Star Level",
+    "email": "Email",
+    "password": "Password",
+    "signOut": "Sign out",
+    "loading": "Loading…",
+    "language": "Language",
+    "english": "English",
+    "chinese": "中文"
+  },
+  "home": {
+    "tagline": "Level up by starring open source on GitHub",
+    "description": "Link GitHub, star public repos, earn XP, and climb to level 100. Each repo counts once; daily recognition caps scale with your level.",
+    "getStarted": "Get started",
+    "logIn": "Log in"
+  },
+  "login": {
+    "title": "Log in to Star Level",
+    "subtitle": "Sign in with email, then bind GitHub on the dashboard to earn Star XP.",
+    "submit": "Log in",
+    "submitting": "Signing in…",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign up"
+  },
+  "signup": {
+    "title": "Sign up for Star Level",
+    "subtitle": "After signup, bind GitHub and earn XP by starring public repositories.",
+    "githubButton": "Sign up / log in with GitHub",
+    "orEmail": "Or sign up with email",
+    "passwordHint": "Password (min. 6 characters)",
+    "submit": "Sign up with email",
+    "submitting": "Signing up…",
+    "hasAccount": "Already have an account?",
+    "logIn": "Log in"
+  },
+  "bindGitHub": {
+    "title": "Bind GitHub",
+    "subtitle": "Link GitHub after signup to sync starred public repos and earn XP.",
+    "checking": "Checking link status…",
+    "linkedMessage": "GitHub is linked. Sync stars to recognize new repos.",
+    "goDashboard": "Go to dashboard →",
+    "connect": "Connect GitHub",
+    "redirecting": "Redirecting…",
+    "manualLinkingTitle": "Enable Manual linking in Supabase",
+    "manualLinkingStep1": "Open Supabase → Authentication → Sign In / Providers",
+    "manualLinkingStep2": "Turn on Manual linking",
+    "manualLinkingStep3": "Save, return here, and click Connect GitHub again",
+    "openSupabaseSettings": "Open Supabase auth settings",
+    "orGitHubLogin": "Or sign out and log in with GitHub (same email may auto-link)",
+    "githubLoginButton": "Sign out & log in with GitHub"
+  },
+  "dashboard": {
+    "syncTitle": "Sync GitHub Stars",
+    "syncDescription": "Each newly recognized public repo grants 10 XP. Same repo counts once per account.",
+    "rulesTitle": "Rules",
+    "ruleDailyCap": "Daily cap: 10 × ceil(level / 10) new recognitions",
+    "ruleReset": "Business day resets at 01:00 Beijing time",
+    "ruleMaxLevel": "Level 100: no more XP"
+  },
+  "progress": {
+    "currentLevel": "Current level",
+    "maxLevel": "Max level",
+    "totalXp": "Total XP {value}",
+    "lifetimeRepos": "{count} repos recognized",
+    "levelProgress": "Level progress",
+    "xpRatio": "{current} / {required} XP",
+    "todayRecognized": "Recognized today",
+    "todayXp": "XP earned today",
+    "footer": "Business day {date} (resets 01:00 Beijing) · +10 XP per new repo"
+  },
+  "sync": {
+    "button": "Sync GitHub Stars",
+    "syncing": "Syncing…",
+    "loginRequired": "Please log in first",
+    "githubRequired": "GitHub authorization required. Go to Bind GitHub and reconnect.",
+    "success": "Done: {recognized} recognized, {skipped} skipped"
+  },
+  "metadata": {
+    "title": "Star Level",
+    "description": "Level up by starring open source repositories on GitHub"
+  }
+}

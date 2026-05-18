@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Star Level
 
-## Getting Started
+Level up by starring public GitHub repositories. Built with Next.js and Supabase.
 
-First, run the development server:
+## Features
+
+- Email signup (Supabase Auth) + required GitHub link
+- Sync GitHub Stars via Edge Function
+- XP: 10 per newly recognized repo
+- Daily recognition cap: `10 * ceil(level / 10)`
+- Business day resets at **01:00 Beijing time**
+- Levels 1–100; no XP after max level
+
+## Internationalization (i18n)
+
+- **Locales**: `zh` (default), `en`
+- **URLs**: `/zh/dashboard`, `/en/login`, etc.
+- **Switcher**: top-right on every page
+- **Messages**: `messages/zh.json`, `messages/en.json`
+
+Add a locale in `src/i18n/routing.ts` and create `messages/<locale>.json`.
+
+## Local setup
+
+### 1. Supabase Dashboard
+
+1. **Authentication → Providers → Email**: enable email signup.
+2. **Authentication → Providers → GitHub**: enable, set Client ID/Secret from [GitHub OAuth Apps](https://github.com/settings/developers).
+3. **Authentication → URL configuration**:
+   - Site URL: `http://localhost:3000`
+   - Redirect URLs:
+     - `http://localhost:3000/zh/auth/callback`
+     - `http://localhost:3000/en/auth/callback`
+4. **Authentication → Providers → GitHub**: ensure scopes include `read:user` (default is fine for public starred repos).
+
+### 2. Environment
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.local.example .env.local
+# Edit with your project URL and anon/publishable key
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Install and run
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+### 4. Deploy Edge Function
 
-To learn more about Next.js, take a look at the following resources:
+From project root (requires [Supabase CLI](https://supabase.com/docs/guides/cli)):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+supabase link --project-ref fkkeylzfdfpsudocydwz
+supabase functions deploy sync-github-stars
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Or deploy via Supabase Dashboard → Edge Functions.
 
-## Deploy on Vercel
+The function `sync-github-stars` requires JWT (`verify_jwt: true`) and body `{ "provider_token": "..." }` from the user session after GitHub OAuth.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/app/           # Next.js pages (login, signup, bind-github, dashboard)
+src/components/    # UI components
+src/lib/supabase/  # Supabase clients + middleware
+supabase/functions/sync-github-stars/  # Star sync + XP grants
+```
+
+## Database
+
+Schema and RLS live in Supabase migrations (`star_level_*`). Key RPC:
+
+- `my_progress()` — current level, XP, daily stats
+- `recognize_github_star()` — service role only (called from Edge Function)
+
+## Social features (reserved)
+
+Tables `posts`, `post_likes`, `conversations`, `messages` exist with RLS deny-all for v1; enable when building feed/DM features.
