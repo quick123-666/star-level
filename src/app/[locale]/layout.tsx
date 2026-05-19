@@ -5,6 +5,7 @@ import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server
 import { notFound } from 'next/navigation'
 import { routing, type Locale } from '@/i18n/routing'
 import { LanguageSwitcher } from '@/components/language-switcher'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import '../globals.css'
 
 // Auth pages use Supabase; skip static prerender at build (needs env at runtime).
@@ -65,6 +66,7 @@ export default async function LocaleLayout({
           </div>
           {children}
         </NextIntlClientProvider>
+        <SpeedInsights />
       </body>
     </html>
   )
